@@ -4,6 +4,8 @@ type SocketFactory = any;
 type FiltreProperties = any;
 type Status = 'active' | 'inactive' | 'terminated';
 type Routes = {statuses: string; timeSegments: string;};
+
+type Response<T> = {};
 type StatusOptions = any;
 type TimeSegmentsOptions = any;
 
@@ -15,17 +17,17 @@ class FiltersService {
 
   constructor(private socket: SocketFactory, private filterProperties: FiltreProperties) {}
 
-  public getStatusesOptions() {
+  public getStatusesOptions(): Response<Promise<StatusOptions>> {
     //return this.socket.query(this.routes.statuses);
     return this.socket.query(this.routes.statuses).then(this.parseResponse)
 
   }
 
-  public getTimeSegmentsOptions(status: Status[]) {
+  public getTimeSegmentsOptions(status: Status[]): Response<Promise<TimeSegmentsOptions>> {
     return this.socket.query(this.routes.timeSegments, {status});
   }
 
-  private parseResponse(response: Response): StatusOptions | TimeSegmentsOptions {
+  private parseResponse<T>(response: Response<T>): StatusOptions | TimeSegmentsOptions {
     return get(response, 'body');
   }
 }
