@@ -148,3 +148,25 @@ const positionsListReducer = handleActions({
     return state;
   }
 }, {})
+
+
+
+function getData() {
+  // return new Promise((resolve, reject) => {
+  //   setTimeout(() => {
+  //     resolve('OK')
+  //   }, 5000)
+  // })
+
+  return Promise.resolve('OK').then((res) => res + 'boom')
+}
+
+
+async function runFlow() {
+  const result = await getData();
+  console.log(result, 'result')
+}
+
+
+runFlow()
+
