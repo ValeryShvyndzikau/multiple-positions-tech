@@ -135,7 +135,7 @@ const requestStatusesReducer = handleActions({
     return {
       ...state,
       [action.meta.requestId]: action.payload.status
-    }
+    }`/1`28wq                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
   }
 }, {})
 
