@@ -3,7 +3,7 @@
 // Import stylesheets
 import './style.css';
 
-import {createActions, handleActions, combineActions} from 'redux-actions';
+import {createAction, createActions, handleActions, combineActions} from 'redux-actions';
 
 // Write TypeScript code!
 const appDiv: HTMLElement = document.getElementById('app');
@@ -124,10 +124,12 @@ const {requestStart, requestSuccess, requestError} = createActions({
     (_, requestId) => ({ requestId })
   ],
   REQUEST_ERROR: [
-    () => ({ status: "FAILURE" }),
+    (error) => ({ status: "FAILURE", error }),
     (_, requestId) => ({ requestId })
   ]
 })
+
+console.log(requestStart(23))
 
 // example: requestStatusesReducer
 const requestStatusesReducer = handleActions({
@@ -170,3 +172,4 @@ async function runFlow() {
 
 runFlow()
 
+const testAction = createAction();
